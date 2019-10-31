@@ -1,2 +1,2 @@
 - include: centos.yml
-  when: ansible_distriburion == "CentOS"
+  when: ansible_distribution == "CentOS"
