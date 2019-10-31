@@ -1,15 +1,9 @@
 ---
 # tasks file for base
 
-- include: centos7.yml
+- include: centos.yml
   when:
     - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "7"
-
-- include: centos8.yml
-  when:
-    - ansible_distribution == "CentOS"
-    - ansible_distribution_major_version == "8"
 
 - include: ubuntu16.yml
   when:

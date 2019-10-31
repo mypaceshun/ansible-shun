@@ -1,0 +1,42 @@
+---
+
+- debug:
+    msg: "Running shun base role for [{{ansible_distribution}}{{ansible_distribution_major_version}}]"
+
+- name: change timezone to Asia/Tokyo
+  file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=true
+  become: true
+
+- name: Install chrony
+  yum:
+    name: chrony
+    state: latest
+  become: true
+
+- name: Copy chrony.conf
+  template:
+    src: shun.chrony.conf
+    dest: /etc/chrony.conf
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  notify: "Restart chronyd"
+
+- name: start chronyd
+  service:
+    name: chronyd
+    state: started
+    enabled: true
+  become: true
+
+- name: "yum install default packages"
+  yum:
+    name: "{{ shun_base_default_packages }}"
+    state: latest
+  become: true
+
+- name: "Disabled SELinux"
+  selinux:
+    state: disabled
+  become: true

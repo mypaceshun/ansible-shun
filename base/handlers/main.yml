@@ -1,2 +1,9 @@
 ---
 # handlers file for base
+
+- name: "Restart chronyd"
+  service:
+    name: chronyd
+    state: restarted
+    enabled: true
+  become: true
