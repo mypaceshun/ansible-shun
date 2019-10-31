@@ -10,5 +10,5 @@
   shell: "{{ shun_base_dotfiles_setup_shell }}"
   args:
     chdir: "{{ shun_base_dotfiles_dest }}"
-    executable: /bin/base
+    executable: /bin/bash
 
