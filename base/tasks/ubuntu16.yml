@@ -1,5 +1,4 @@
---
+---
 
-- name: "Running message"
-  debug:
+- debug:
     msg: "Running shun base role for [{{ansible_distribution}}{{ansible_distribution_major_version}}]"
