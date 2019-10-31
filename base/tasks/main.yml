@@ -6,3 +6,5 @@
   when: shun_base_dotfiles_install
 - include: nfshome/main.yml
   when: shun_base_nfshome_install
+- include: ldapauth/main.yml
+  when: shun_base_ldapauth_install

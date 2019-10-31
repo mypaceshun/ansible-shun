@@ -25,3 +25,9 @@ shun_base_nfshome_install: true
 shun_base_nfshome_dest: "/home/{{ shun_base_username }}"
 shun_base_nfshome_src_host: 192.168.121.1
 shun_base_nfshome_src_dir: /home-vagrant
+
+shun_base_ldapauth_install: true
+shun_base_ldapauth_uris: ldap://localhost
+shun_base_ldapauth_search_base: dc=example,dc=com
+shun_base_ldapauth_bind_dn: cn=master,dc=example,dc=com
+shun_base_ldapauth_bind_pass: pass

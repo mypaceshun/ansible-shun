@@ -1,0 +1,23 @@
+---
+
+- name: "Install sssd"
+  yum:
+    name: sssd
+    state: latest
+  become: true
+
+- name: "Copy sssd.conf"
+  template:
+    src: shun.sssd.conf
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: 0600
+  become: true
+
+- name: "start sssd"
+  service:
+    name: sssd
+    state: started
+    enabled: true
+  become: true

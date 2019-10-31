@@ -14,7 +14,7 @@
 - name: "Mount home directory"
   mount:
     name: "{{ shun_base_nfshome_dest }}"
-    src: "{{ shun_base_nfs_src_host }}:{{ shun_base_nfshome_src_dir }}"
+    src: "{{ shun_base_nfshome_src_host }}:{{ shun_base_nfshome_src_dir }}"
     fstype: nfs
     state: mounted
   become: true
