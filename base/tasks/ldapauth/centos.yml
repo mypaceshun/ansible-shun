@@ -14,6 +14,7 @@
     group: root
     mode: 0600
   become: true
+  notify: "Restart sssd"
 
 - name: "start sssd"
   service:
