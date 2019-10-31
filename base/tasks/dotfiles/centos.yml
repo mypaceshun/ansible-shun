@@ -12,3 +12,16 @@
     chdir: "{{ shun_base_dotfiles_dest }}"
     executable: /bin/bash
 
+- name: "git clone dotfiles for root"
+  git:
+    repo: "{{ shun_base_dotfiles_repo }}"
+    dest: "/root/{{ shun_base_dotfiles_dest }}"
+    version: "{{ shun_base_dotfiles_branch }}"
+  become: true
+
+- name: "dotfiles setup for root"
+  shell: "{{ shun_base_dotfiles_setup_shell }}"
+  args:
+    chdir: "/root/{{ shun_base_dotfiles_dest }}"
+    executable: /bin/bash
+  become: true

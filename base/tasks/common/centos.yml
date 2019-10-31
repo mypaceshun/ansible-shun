@@ -40,3 +40,12 @@
   selinux:
     state: disabled
   become: true
+
+- name: "Change loginchell"
+  user:
+    name: "{{ item }}"
+    shell: /bin/zsh
+  with_items:
+    - "{{ ansible_env.USER }}"
+    - root
+  become: true

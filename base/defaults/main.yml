@@ -20,3 +20,8 @@ shun_base_dotfiles_repo: https://github.com/mypaceshun/dotfiles.git
 shun_base_dotfiles_dest: dotfiles
 shun_base_dotfiles_branch: master
 shun_base_dotfiles_setup_shell: ./setup.sh
+
+shun_base_nfshome_install: true
+shun_base_nfshome_dest: "/home/{{ shun_base_username }}"
+shun_base_nfshome_src_host: 192.168.121.1
+shun_base_nfshome_src_dir: /home-vagrant

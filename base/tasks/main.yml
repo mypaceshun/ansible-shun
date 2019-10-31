@@ -4,3 +4,5 @@
 - include: common/main.yml
 - include: dotfiles/main.yml
   when: shun_base_dotfiles_install
+- include: nfshome/main.yml
+  when: shun_base_nfshome_install
