@@ -16,7 +16,7 @@ shun_base_ntp_servers:
   - 3.centos.pool.ntp.org
 
 shun_base_dotfiles_install: true
-shun_base_dotfiles_repo: https://github.com/mypaceshu/dotfiles.git
+shun_base_dotfiles_repo: https://github.com/mypaceshun/dotfiles.git
 shun_base_dotfiles_dest: dotfiles
 shun_base_dotfiles_branch: master
 shun_base_dotfiles_setup_shell: ./setup.sh
