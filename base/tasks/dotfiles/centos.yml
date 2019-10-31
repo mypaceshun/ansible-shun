@@ -1,0 +1,14 @@
+---
+
+- name: "git clone dotfiles"
+  git:
+    repo: "{{ shun_base_dotfiles_repo }}"
+    dest: "{{ shun_base_dotfiles_dest }}"
+    version: "{{ shun_base_dotfiles_branch }}"
+
+- name: "dotfiles setup"
+  shell: "{{ shun_base_dotfiles_setup_shell }}"
+  args:
+    chdir: "{{ shun_base_dotfiles_dest }}"
+    executable: /bin/base
+
