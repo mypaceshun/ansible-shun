@@ -16,6 +16,15 @@
   become: true
   notify: "Restart sssd"
 
+- name: "Copy sudoers"
+  template:
+    src: shun.sudoers.d.shun
+    dest: /etc/sudoers.d/shun
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
 - name: "start sssd"
   service:
     name: sssd
