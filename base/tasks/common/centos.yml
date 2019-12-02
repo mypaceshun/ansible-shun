@@ -49,3 +49,17 @@
     - "{{ ansible_env.USER }}"
     - root
   become: true
+
+- name: "sshd PasswordAuthentication yes"
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication no'
+    line: 'PasswordAuthentication yes'
+  become: true
+
+- name: "restart sshd"
+  service:
+    name: sshd
+    state: restarted
+    enabled: true
+  become: true
