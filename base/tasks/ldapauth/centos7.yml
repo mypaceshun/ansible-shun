@@ -40,7 +40,7 @@
     path: /etc/nsswitch.conf
     regexp: '^sudoers:'
     insertafter: EOF
-    line: 'sudoers:    sss files'
+    line: 'sudoers:    files sss'
   become: true
 
 - name: "start sssd"
