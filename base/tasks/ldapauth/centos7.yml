@@ -21,7 +21,7 @@
   notify: "Restart sssd"
 
 - name: "Set ldappassword"
-  shell: echo '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
+  shell: echo -n '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
   args:
     executable: /bin/bash
   no_log: true
