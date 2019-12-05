@@ -1,0 +1,43 @@
+---
+
+- name: "Install sssd"
+  yum:
+    name:
+      - sssd
+      - sssd-tools
+      - sssd-dbus
+      - authselect
+    state: latest
+  become: true
+
+- name: "Copy sssd.conf"
+  template:
+    src: shun.sssd.conf
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: 0600
+  become: true
+  notify: "Restart sssd"
+
+- name: "Set ldappassword"
+  shell: echo '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
+  args:
+    executable: /bin/bash
+  no_log: true
+  become: true
+  notify: "Restart sssd"
+
+- name: "Exec authselect"
+  shell: authselect select sssd with-sudo -f
+  args:
+    executable: /bin/bash
+  become: true
+  notify: "Restart sssd"
+
+- name: "start sssd"
+  service:
+    name: sssd
+    state: started
+    enabled: true
+  become: true
