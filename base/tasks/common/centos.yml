@@ -41,14 +41,14 @@
     name: glibc
     state: latest
   become: true
-  when: ansible_distribution_major_version == 7
+  when: ansible_distribution_major_version == "7"
 
 - name: "install langpacks-ja"
   yum:
     name: langpacks-ja
     state: latest
   become: true
-  when: ansible_distribution_major_version == 8
+  when: ansible_distribution_major_version == "8"
 
 - name: "Disabled SELinux"
   selinux:
