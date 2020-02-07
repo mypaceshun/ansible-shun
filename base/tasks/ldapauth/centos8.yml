@@ -7,6 +7,7 @@
       - sssd-tools
       - sssd-dbus
       - authselect
+      - oddjob-mkhomedir
     state: latest
   become: true
 
@@ -29,7 +30,7 @@
   notify: "Restart sssd"
 
 - name: "Exec authselect"
-  shell: authselect select sssd with-sudo -f
+  shell: authselect select sssd with-sudo with-mkhomedir -f
   args:
     executable: /bin/bash
   become: true
@@ -38,6 +39,13 @@
 - name: "start sssd"
   service:
     name: sssd
+    state: started
+    enabled: true
+  become: true
+
+- name: "start oddjobd"
+  service:
+    name: oddjobd
     state: started
     enabled: true
   become: true

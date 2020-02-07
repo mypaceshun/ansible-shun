@@ -7,6 +7,7 @@
       - sssd-tools
       - sssd-dbus
       - authconfig
+      - oddjob-mkhomedir
     state: latest
   become: true
 
@@ -28,8 +29,8 @@
   become: true
   notify: "Restart sssd"
 
-- name: "Exec authselect"
-  shell: authconfig --disableldap --disableldapauth --enablesssd --enablesssdauth --update
+- name: "Exec authconfig"
+  shell: authconfig --disableldap --disableldapauth --enablesssd --enablesssdauth --enablemkhomedir --update
   args:
     executable: /bin/bash
   become: true
@@ -46,6 +47,13 @@
 - name: "start sssd"
   service:
     name: sssd
+    state: started
+    enabled: true
+  become: true
+
+- name: "start oddjobd"
+  service:
+    name: oddjobd
     state: started
     enabled: true
   become: true
