@@ -45,7 +45,9 @@
 
 - name: "install langpacks-ja"
   yum:
-    name: langpacks-ja
+    name: 
+    - langpacks-ja
+    - glibc-langpack-ja
     state: latest
   become: true
   when: ansible_distribution_major_version == "8"
