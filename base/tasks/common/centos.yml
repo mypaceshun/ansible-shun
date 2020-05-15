@@ -57,7 +57,7 @@
     state: disabled
   become: true
 
-- name: "Change loginchell"
+- name: "Change loginshell"
   user:
     name: "{{ item }}"
     shell: /bin/zsh
