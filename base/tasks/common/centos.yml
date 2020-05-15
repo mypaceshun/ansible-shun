@@ -66,6 +66,16 @@
     - root
   become: true
 
+- name: "Deploy /etc/hosts"
+  template:
+    src: shun.hosts
+    dest: /etc/hosts
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  when: shun_base_hosts_install
+
 - name: "sshd PasswordAuthentication yes"
   lineinfile:
     path: /etc/ssh/sshd_config
