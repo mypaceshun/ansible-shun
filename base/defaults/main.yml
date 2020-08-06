@@ -15,7 +15,7 @@ shun_base_ntp_servers:
   - 2.centos.pool.ntp.org
   - 3.centos.pool.ntp.org
 
-shun_base_hosts_instll: false
+shun_base_hosts_install: false
 #shun_base_hosts_install: true
 shun_base_hosts: 
   - "127.0.0.1 localhost"
