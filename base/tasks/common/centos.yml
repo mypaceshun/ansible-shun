@@ -60,9 +60,9 @@
   become: true 
   when: ansible_distribution_major_version == "7"
 
-- name: "Disabled SELinux"
+- name: "SELinux {{ shun_base_selinux }}"
   selinux:
-    state: disabled
+    state: "{{ shun_base_selinux }}"
   become: true
 
 - name: "Change loginshell"

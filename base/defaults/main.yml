@@ -9,6 +9,8 @@ shun_base_default_packages:
   - zsh
   - openssl
 
+shun_base_selinux: disabled
+
 shun_base_ntp_servers:
   - 0.centos.pool.ntp.org
   - 1.centos.pool.ntp.org
