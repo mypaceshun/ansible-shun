@@ -51,7 +51,7 @@
     - glibc-langpack-ja
     state: latest
   become: true
-  when: ansible_distribution_major_version == "8"
+  when: ansible_distribution_major_version >= "8"
 
 - name: "locale create ja_JP.UTF-8"
   shell: "localedef -f UTF-8 -i ja_JP ja_JP.UTF-8"
