@@ -1,72 +1,74 @@
 ---
 
-- debug:
-    msg: "Running shun base role for [{{ansible_distribution}}{{ansible_distribution_major_version}}]"
-
-- name: change timezone to Asia/Tokyo
-  file: src=/usr/share/zoneinfo/Asia/Tokyo dest=/etc/localtime state=link force=true
+- name: Change timezone to Asia/Tokyo
+  ansible.builtin.file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+    force: true
   become: true
 
 - name: Install chrony
-  yum:
+  ansible.builtin.yum:
     name: chrony
     state: latest
   become: true
 
 - name: Copy chrony.conf
-  template:
+  ansible.builtin.template:
     src: shun.chrony.conf
     dest: /etc/chrony.conf
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   become: true
   notify: "Restart chronyd"
 
-- name: start chronyd
-  service:
+- name: Start chronyd
+  ansible.builtin.service:
     name: chronyd
     state: started
     enabled: true
   become: true
 
-- name: "yum install default packages"
-  yum:
+- name: "Yum install default packages"
+  ansible.builtin.yum:
     name: "{{ shun_base_default_packages }}"
     state: latest
   become: true
 
-- name: "install glibc"
-  yum:
-    name: glibc
-    name: glibc-common
+- name: "Install glibc"
+  ansible.builtin.yum:
+    name:
+      - glibc
+      - glibc-common
     state: latest
   become: true
   when: ansible_distribution_major_version == "7"
 
-- name: "install langpacks-ja"
-  yum:
-    name: 
-    - langpacks-ja
-    - glibc-langpack-ja
+- name: "Install langpacks-ja"
+  ansible.builtin.yum:
+    name:
+      - langpacks-ja
+      - glibc-langpack-ja
     state: latest
   become: true
   when: ansible_distribution_major_version >= "8"
 
-- name: "locale create ja_JP.UTF-8"
-  shell: "localedef -f UTF-8 -i ja_JP ja_JP.UTF-8"
+- name: "Locale create ja_JP.UTF-8"
+  ansible.builtin.shell: "localedef -f UTF-8 -i ja_JP ja_JP.UTF-8"
   args:
     executable: /bin/bash
-  become: true 
+  become: true
   when: ansible_distribution_major_version == "7"
 
 - name: "SELinux {{ shun_base_selinux }}"
-  selinux:
+  ansible.posix.selinux:
     state: "{{ shun_base_selinux }}"
   become: true
 
 - name: "Change loginshell"
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     shell: /bin/zsh
   with_items:
@@ -75,24 +77,24 @@
   become: true
 
 - name: "Deploy /etc/hosts"
-  template:
+  ansible.builtin.template:
     src: shun.hosts
     dest: /etc/hosts
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
   become: true
   when: shun_base_hosts_install
 
-- name: "sshd PasswordAuthentication yes"
-  lineinfile:
+- name: "Sshd PasswordAuthentication yes"
+  ansible.builtin.lineinfile:
     path: /etc/ssh/sshd_config
     regexp: '^PasswordAuthentication no'
     line: 'PasswordAuthentication yes'
   become: true
 
-- name: "restart sshd"
-  service:
+- name: "Restart sshd"
+  ansible.builtin.service:
     name: sshd
     state: restarted
     enabled: true

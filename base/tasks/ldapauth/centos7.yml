@@ -1,8 +1,8 @@
 ---
 
 - name: "Install sssd"
-  yum:
-    name: 
+  ansible.builtin.yum:
+    name:
       - sssd
       - sssd-tools
       - sssd-dbus
@@ -12,17 +12,17 @@
   become: true
 
 - name: "Copy sssd.conf"
-  template:
+  ansible.builtin.template:
     src: shun.sssd.conf
     dest: /etc/sssd/sssd.conf
     owner: root
     group: root
-    mode: 0600
+    mode: "600"
   become: true
   notify: "Restart sssd"
 
 - name: "Set ldappassword"
-  shell: echo -n '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
+  ansible.builtin.shell: echo -n '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
   args:
     executable: /bin/bash
   no_log: true
@@ -30,29 +30,29 @@
   notify: "Restart sssd"
 
 - name: "Exec authconfig"
-  shell: authconfig --disableldap --disableldapauth --enablesssd --enablesssdauth --enablemkhomedir --update
+  ansible.builtin.shell: authconfig --disableldap --disableldapauth --enablesssd --enablesssdauth --enablemkhomedir --update
   args:
     executable: /bin/bash
   become: true
   notify: "Restart sssd"
 
 - name: "Rewrite nsswitch.conf"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     regexp: '^sudoers:'
     insertafter: EOF
     line: 'sudoers:    files sss'
   become: true
 
-- name: "start sssd"
-  service:
+- name: "Start sssd"
+  ansible.builtin.service:
     name: sssd
     state: started
     enabled: true
   become: true
 
-- name: "start oddjobd"
-  service:
+- name: "Start oddjobd"
+  ansible.builtin.service:
     name: oddjobd
     state: started
     enabled: true

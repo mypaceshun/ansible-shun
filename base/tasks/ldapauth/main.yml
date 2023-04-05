@@ -1,19 +1,23 @@
-- include: centos7.yml
+- name: "Include ldapauth centos7"
+  ansible.builtin.include_tasks: centos7.yml
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "7"
 
-- include: centos8.yml
+- name: "Include ldapauth centos8"
+  ansible.builtin.include_tasks: centos8.yml
   when:
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "8"
 
-- include: centos8.yml
+- name: "Include ldapauth centos8"
+  ansible.builtin.include_tasks: centos8.yml
   when:
     - ansible_distribution == "AlmaLinux"
     - ansible_distribution_major_version == "8"
 
-- include: centos8.yml
+- name: "Include ldapauth centos8"
+  ansible.builtin.include_tasks: centos8.yml
   when:
     - ansible_distribution == "AlmaLinux"
     - ansible_distribution_major_version == "9"

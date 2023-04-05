@@ -1,5 +1,6 @@
 ---
 # Install dotfiles
 
-- include: centos.yml
+- name: "Include centos"
+  ansible.builtin.include_tasks: centos.yml
   when: ansible_distribution == "CentOS" or ansible_distribution == "AlmaLinux"

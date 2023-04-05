@@ -1,10 +1,14 @@
 ---
 # tasks file for base
 
-- include: common/main.yml
-- include: dotfiles/main.yml
+- name: "Include common"
+  ansible.builtin.include_tasks: common/main.yml
+- name: "Include dotfiles"
+  ansible.builtin.include_tasks: dotfiles/main.yml
   when: shun_base_dotfiles_install
-- include: nfshome/main.yml
+- name: "Include nfshome"
+  ansible.builtin.include_tasks: nfshome/main.yml
   when: shun_base_nfshome_install
-- include: ldapauth/main.yml
+- name: "Include ldapauth"
+  ansible.builtin.include_tasks: ldapauth/main.yml
   when: shun_base_ldapauth_install

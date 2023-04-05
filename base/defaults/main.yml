@@ -18,8 +18,8 @@ shun_base_ntp_servers:
   - 3.centos.pool.ntp.org
 
 shun_base_hosts_install: false
-#shun_base_hosts_install: true
-shun_base_hosts: 
+# shun_base_hosts_install: true
+shun_base_hosts:
   - "127.0.0.1 localhost"
 
 shun_base_dotfiles_install: true
