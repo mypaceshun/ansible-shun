@@ -28,7 +28,7 @@
   args:
     executable: /bin/bash
   register: result_ldappasswd
-  changed_when: resut_ldappasswd.rc == 0
+  changed_when: result_ldappasswd.rc == 0
   no_log: true
   become: true
   notify: "Restart sssd"

@@ -15,15 +15,11 @@
   changed_when: result_setup_dotfiles.rc == 0
 
 - name: "PlugInstall"
-  ansible.builtin.shell: |
-    set -o pipefail
-    TEMPFILE=`mktemp`
-    echo ':PlugInstall\n:qa!' > ${TMPFILE}
-    vim -s ${TMPFILE}
+  ansible.builtin.shell: vim +PlugInstall +qall
   args:
     executable: /bin/bash
   register: result
-  changed_when: result.return_code == 0
+  changed_when: result.rc == 0
 
 - name: "Git clone dotfiles for root"
   ansible.builtin.git:
@@ -42,10 +38,7 @@
   become: true
 
 - name: "PlugInstall"
-  ansible.builtin.shell: |
-    TEMPFILE=`mktemp`
-    echo ':PlugInstall\n:qa!' > ${TMPFILE}
-    vim -s ${TMPFILE}
+  ansible.builtin.shell: vim +PlugInstall +qall
   args:
     executable: /bin/bash
   register: result
