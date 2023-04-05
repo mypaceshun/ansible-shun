@@ -22,9 +22,13 @@
   notify: "Restart sssd"
 
 - name: "Set ldappassword"
-  ansible.builtin.shell: echo -n '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
+  ansible.builtin.shell: |
+    set -o pipefail
+    echo -n '{{ shun_base_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ shun_base_ldapauth_sssd_domain }}
   args:
     executable: /bin/bash
+  register: result_ldappassword
+  changed_when: result_ldappassword.rc == 0
   no_log: true
   become: true
   notify: "Restart sssd"
@@ -33,6 +37,8 @@
   ansible.builtin.shell: authconfig --disableldap --disableldapauth --enablesssd --enablesssdauth --enablemkhomedir --update
   args:
     executable: /bin/bash
+  register: result_authconfig
+  changed_when: result_authconfig.rc == 0
   become: true
   notify: "Restart sssd"
 

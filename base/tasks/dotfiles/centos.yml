@@ -11,6 +11,8 @@
   args:
     chdir: "{{ shun_base_dotfiles_dest }}"
     executable: /bin/bash
+  register: result_setup_dotfiles
+  changed_when: result_setup_dotfiles.rc == 0
 
 - name: "PlugInstall"
   ansible.builtin.shell: |
@@ -35,6 +37,8 @@
   args:
     chdir: "/root/{{ shun_base_dotfiles_dest }}"
     executable: /bin/bash
+  register: result_setup_dotfiles
+  changed_when: result_setup_dotfiles.rc == 0
   become: true
 
 - name: "PlugInstall"
