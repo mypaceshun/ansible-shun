@@ -9,6 +9,9 @@
 - name: "Include nfshome"
   ansible.builtin.include_tasks: nfshome/main.yml
   when: shun_base_nfshome_install
+- name: "Include autofs"
+  ansible.builtin.include_tasks: autofs/main.yml
+  when: shun_base_autofs_install
 - name: "Include ldapauth"
   ansible.builtin.include_tasks: ldapauth/main.yml
   when: shun_base_ldapauth_install

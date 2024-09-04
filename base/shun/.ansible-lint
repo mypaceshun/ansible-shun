@@ -1,0 +1,3 @@
+# vi: set ft=yaml :
+skip_list:
+  - package-latest

@@ -1,0 +1,32 @@
+---
+- name: Install autofs
+  ansible.builtin.yum:
+    name: autofs
+    state: latest
+  become: true
+
+- name: Copy home.conf
+  ansible.builtin.template:
+    src: shun.auto.home.conf
+    dest: /etc/auto.master.d/home.autofs
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+
+- name: "Copy auto.home"
+  ansible.builtin.template:
+    src: shun.auto.home
+    dest: /etc/auto.home
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+
+- name: "Start autofs"
+  ansible.builtin.service:
+    name: autofs
+    state: restarted
+    enabled: true
+  become: true
+

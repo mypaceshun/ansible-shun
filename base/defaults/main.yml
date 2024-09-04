@@ -8,6 +8,13 @@ shun_base_default_packages:
   - vim
   - zsh
   - openssl
+  - curl
+  - tar
+  - make
+  - zip
+  - unzip
+  - python3
+  - python3-pip
 
 shun_base_selinux: disabled
 
@@ -28,10 +35,13 @@ shun_base_dotfiles_dest: dotfiles
 shun_base_dotfiles_branch: master
 shun_base_dotfiles_setup_shell: ./setup.sh
 
-shun_base_nfshome_install: true
-shun_base_nfshome_dest: "/home/{{ shun_base_username }}"
-shun_base_nfshome_src_host: 192.168.121.1
-shun_base_nfshome_src_dir: /home-vagrant
+shun_base_nfshome_install: false
+#shun_base_nfshome_dest: "/home/{{ shun_base_username }}"
+#shun_base_nfshome_src_host: 192.168.121.1
+#shun_base_nfshome_src_dir: /home-vagrant
+
+shun_base_autofs_src_host: 192.168.121.1
+shun_base_autofs_src_dir: /home-vagrant
 
 shun_base_ldapauth_install: true
 shun_base_ldapauth_uris: ldap://localhost

@@ -4,15 +4,14 @@ version = "0.1.0"
 description = "mypaceshun original Ansible roles"
 authors = ["KAWAI Shun <mypaceshun@gmail.com>"]
 license = "MIT"
-package-mode = false
 
 [tool.poetry.dependencies]
-python = "^3.11"
-ansible = "^10.3.0"
+python = "^3.9"
+ansible = "^7.4.0"
 
 [tool.poetry.group.dev.dependencies]
-yamllint = "^1.35.1"
-ansible-lint = {markers = "platform_system != \"Windows\"", version="^24.7.0"}
+yamllint = "^1.30.0"
+ansible-lint = { version="^6.9.0", markers = "platform_system != 'Windows'" }
 
 [tool.poe.tasks.lint]
 cmd = "ansible-lint base/"

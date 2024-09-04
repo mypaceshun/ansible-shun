@@ -10,14 +10,14 @@
     - ansible_distribution == "CentOS"
     - ansible_distribution_major_version == "8"
 
-- name: "Include ldapauth centos8"
+- name: "Include ldapauth Alma8 or Rocky8"
   ansible.builtin.include_tasks: centos8.yml
   when:
-    - ansible_distribution == "AlmaLinux"
+    - ansible_distribution == "AlmaLinux" or ansible_distribution == "Rocky"
     - ansible_distribution_major_version == "8"
 
-- name: "Include ldapauth centos8"
-  ansible.builtin.include_tasks: centos8.yml
+- name: "Include ldapauth Alma9 or Rocky9"
+  ansible.builtin.include_tasks: rhel9.yml
   when:
-    - ansible_distribution == "AlmaLinux"
+    - ansible_distribution == "AlmaLinux" or ansible_distribution == "Rocky"
     - ansible_distribution_major_version == "9"

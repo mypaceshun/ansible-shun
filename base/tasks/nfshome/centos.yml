@@ -13,8 +13,9 @@
 
 - name: "Mount home directory"
   ansible.posix.mount:
-    name: "{{ shun_base_nfshome_dest }}"
-    src: "{{ shun_base_nfshome_src_host }}:{{ shun_base_nfshome_src_dir }}"
+    name: "{{ shun_base_nfshome_dest }}/{{ item }}"
+    src: "{{ shun_base_nfshome_src_host }}:{{ shun_base_nfshome_src_dir }}/{{ item }}"
     fstype: nfs
     state: mounted
   become: true
+  loop: "{{ shun_base_nfshome_users }}"
