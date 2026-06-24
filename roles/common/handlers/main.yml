@@ -1,0 +1,21 @@
+---
+- name: "Restart chronyd"
+  ansible.builtin.systemd:
+    name: chronyd
+    state: restarted
+    enabled: true
+  become: true
+
+- name: "Restart sshd"
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
+    enabled: true
+  become: true
+
+- name: "Restart sssd"
+  ansible.builtin.service:
+    name: sssd
+    state: restarted
+    enabled: true
+  become: true

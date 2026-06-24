@@ -1,0 +1,52 @@
+---
+- name: Change timezone to Asia/Tokyo
+  ansible.builtin.file:
+    src: /usr/share/zoneinfo/Asia/Tokyo
+    dest: /etc/localtime
+    state: link
+    force: true
+  become: true
+
+- name: Install chrony
+  ansible.builtin.dnf:
+    name: chrony
+    state: latest
+  become: true
+
+- name: Copy chrony.conf
+  ansible.builtin.template:
+    src: shun.chrony.conf
+    dest: /etc/chrony.conf
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify: "Restart chronyd"
+
+- name: "Install default packages"
+  ansible.builtin.dnf:
+    name: "{{ common_default_packages }}"
+    state: latest
+  become: true
+
+- name: "SELinux {{ common_selinux }}"
+  ansible.posix.selinux:
+    state: "{{ common_selinux }}"
+  become: true
+
+- name: "Change loginshell"
+  ansible.builtin.user:
+    name: "{{ item }}"
+    shell: "{{ common_loginshell }}"
+  with_items:
+    - "{{ ansible_env.USER }}"
+    - root
+  become: true
+
+- name: "Rewrite sshd PasswordAuthentication yes"
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication no'
+    line: 'PasswordAuthentication yes'
+  become: true
+  notify: Restart sshd

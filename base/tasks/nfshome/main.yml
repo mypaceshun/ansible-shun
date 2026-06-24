@@ -1,3 +1,0 @@
-- name: Include centos.yml
-  ansible.builtin.include_tasks: centos.yml
-  when: ansible_distribution == "CentOS" or ansible_distribution == "AlmaLinux" or ansible_distribution == "Rocky"

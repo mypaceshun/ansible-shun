@@ -1,0 +1,58 @@
+---
+
+- name: "Install sssd"
+  ansible.builtin.dnf:
+    name:
+      - sssd
+      - sssd-tools
+      - sssd-dbus
+      - authselect
+      - oddjob-mkhomedir
+    state: latest
+  become: true
+
+- name: "Copy sssd.conf"
+  ansible.builtin.template:
+    src: shun.sssd.conf
+    dest: /etc/sssd/sssd.conf
+    owner: root
+    group: root
+    mode: "600"
+  become: true
+  notify: "Restart sssd"
+
+- name: "Set ldappassword"
+  ansible.builtin.shell: |
+    set -o pipefail
+    echo -n '{{ common_ldapauth_bind_pass }}' | sss_obfuscate -s -d {{ common_ldapauth_sssd_domain }}
+  args:
+    executable: /bin/bash
+  register: ldapauth_result_ldappasswd
+  changed_when: ldapauth_result_ldappasswd.rc == 0
+  no_log: true
+  become: true
+  notify: "Restart sssd"
+
+- name: "Exec authselect"
+  ansible.builtin.shell: authselect select sssd with-sudo with-mkhomedir -f
+  args:
+    executable: /bin/bash
+  register: ldapauth_result_authselect
+  changed_when: ldapauth_result_authselect.rc == 0
+  become: true
+  notify: "Restart sssd"
+
+- name: "Start sssd"
+  ansible.builtin.systemd:
+    name: sssd
+    state: started
+    enabled: true
+  become: true
+
+- name: "Start oddjobd"
+  ansible.builtin.systemd:
+    name: oddjobd
+    state: started
+    enabled: true
+  become: true
+  when: common_autofs_install is False

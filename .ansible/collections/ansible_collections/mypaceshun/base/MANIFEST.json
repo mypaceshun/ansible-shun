@@ -1,0 +1,32 @@
+{
+ "collection_info": {
+  "namespace": "mypaceshun",
+  "name": "base",
+  "version": "0.202606.0",
+  "authors": [
+   "KAWAI Shun <mypaceshun@gmail.com>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "linux"
+  ],
+  "description": "Ansible Collections for mypaceshun",
+  "license": [
+   "MIT"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "https://github.com/mypaceshun/ansible-shun",
+  "documentation": null,
+  "homepage": "https://github.com/mypaceshun/ansible-shun",
+  "issues": null
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "707c334c806a588fc34e97bc5decd0cdbcdf1199d4f0107b03b7aab092630af1",
+  "format": 1
+ },
+ "format": 1
+}

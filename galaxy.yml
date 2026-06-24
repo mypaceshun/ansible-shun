@@ -1,0 +1,14 @@
+namespace: mypaceshun
+name: base
+version: 0.202606.0
+readme: README.md
+authors:
+  - KAWAI Shun <mypaceshun@gmail.com>
+
+description: Ansible Collections for mypaceshun
+license:
+  - MIT
+tags:
+  - linux
+repository: https://github.com/mypaceshun/ansible-shun
+homepage: https://github.com/mypaceshun/ansible-shun
