@@ -1,3 +1,0 @@
-- name: "Include rhel"
-  ansible.builtin.include_tasks: rhel.yml
-  when: ansible_facts["distribution"] in ["AlmaLinux", "Rocky"]

@@ -1,4 +1,4 @@
-- name: "nfshome setting"
+- name: "Setting nfshome"
   hosts: all
   roles:
     - role: mypaceshun.base.nfshome

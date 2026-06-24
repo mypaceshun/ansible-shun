@@ -1,4 +1,4 @@
-- name: "common setting"
+- name: "Setting common"
   hosts: all
   roles:
     - role: mypaceshun.base.common

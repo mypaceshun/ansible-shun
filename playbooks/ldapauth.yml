@@ -1,4 +1,4 @@
-- name: "ldapauth setting"
+- name: "Setting ldapauth"
   hosts: all
   roles:
     - role: mypaceshun.base.ldapauth

@@ -1,4 +1,4 @@
-# `shun_base`
+# `mypaceshun.base`
 
 自分が普段使っている環境の初期化用ansible role
 

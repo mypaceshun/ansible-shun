@@ -1,4 +1,4 @@
-- name: "dotfiles setting"
+- name: "Setting dotfiles"
   hosts: all
   roles:
     - role: mypaceshun.base.dotfiles
