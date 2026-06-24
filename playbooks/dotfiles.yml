@@ -1,0 +1,6 @@
+- name: "dotfiles setting"
+  hosts: all
+  roles:
+    - role: mypaceshun.base.dotfiles
+  tags:
+    - dotfiles

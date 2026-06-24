@@ -1,0 +1,6 @@
+- name: "ldapauth setting"
+  hosts: all
+  roles:
+    - role: mypaceshun.base.ldapauth
+  tags:
+    - ldapauth

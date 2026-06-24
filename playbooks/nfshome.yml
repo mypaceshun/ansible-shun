@@ -1,0 +1,6 @@
+- name: "nfshome setting"
+  hosts: all
+  roles:
+    - role: mypaceshun.base.nfshome
+  tags:
+    - nfshome

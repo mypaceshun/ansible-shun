@@ -1,0 +1,9 @@
+---
+- name: "IMPORT: common role"
+  ansible.builtin.import_playbook: mypaceshun.base.common
+- name: "IMPORT: dotfiles role"
+  ansible.builtin.import_playbook: mypaceshun.base.dotfiles
+- name: "IMPORT: ldapauth role"
+  ansible.builtin.import_playbook: mypaceshun.base.ldapauth
+- name: "IMPORT: nfshome role"
+  ansible.builtin.import_playbook: mypaceshun.base.nfshome

@@ -1,0 +1,6 @@
+- name: "common setting"
+  hosts: all
+  roles:
+    - role: mypaceshun.base.common
+  tags:
+    - common
