@@ -32,6 +32,7 @@
 - name: "SELinux {{ common_selinux }}"
   ansible.posix.selinux:
     state: "{{ common_selinux }}"
+    policy: "{{ 'targeted' if common_selinux != 'disabled' else omit }}"
   become: true
 
 - name: "Change loginshell"
