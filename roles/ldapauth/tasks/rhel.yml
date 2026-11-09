@@ -55,4 +55,4 @@
     state: started
     enabled: true
   become: true
-  when: common_autofs_install is False
+  when: common_autofs_install is false
