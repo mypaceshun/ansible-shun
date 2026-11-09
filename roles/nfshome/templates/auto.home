@@ -1,3 +1,3 @@
-{% for common_autofs_mapping in mapping %}
+{% for mapping in common_autofs_mapping %}
 {{ mapping }}
 {% endfor %}
