@@ -1,0 +1,3 @@
+{% for common_autofs_mapping in mapping %}
+{{ mapping }}
+{% endfor %}
