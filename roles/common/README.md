@@ -30,5 +30,5 @@ MIT
 Author Information
 ------------------
 
-KAWAI Shun <shun@osstech.co.jp>
+KAWAI Shun <mypaceshun@gmail.com>
 
