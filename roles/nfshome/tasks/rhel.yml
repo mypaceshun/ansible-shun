@@ -28,7 +28,7 @@
 
 - name: Copy home.conf
   ansible.builtin.template:
-    src: shun.auto.home.conf
+    src: auto.home.conf
     dest: /etc/auto.master.d/home.autofs
     owner: root
     group: root
@@ -37,7 +37,7 @@
 
 - name: "Copy auto.home"
   ansible.builtin.template:
-    src: shun.auto.home
+    src: auto.home
     dest: /etc/auto.home
     owner: root
     group: root
