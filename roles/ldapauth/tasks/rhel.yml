@@ -56,3 +56,16 @@
     enabled: true
   become: true
   when: common_autofs_install is False
+
+- name: "Update sshd_config"
+  when: "'ssh' in common_ldapauth_sssd_services"
+  block:
+    - name: "Copy sshd_config"
+      ansible.builtin.template:
+        src: shun.sssd-ssh.conf
+        dest: /etc/ssh/sshd_config.d/99-sssd.conf
+        owner: root
+        group: root
+        mode: "600"
+      become: true
+      notify: "Restart sshd"

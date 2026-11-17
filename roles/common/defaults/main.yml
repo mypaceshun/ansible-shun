@@ -44,4 +44,12 @@ common_ldapauth_uris: ldap://localhost
 common_ldapauth_search_base: dc=example,dc=com
 common_ldapauth_bind_dn: cn=master,dc=example,dc=com
 common_ldapauth_bind_pass: pass
+common_ldapauth_tls_reqcert: never
+common_ldapauth_id_use_start_tls: true
 common_ldapauth_sssd_domain: shun.local
+common_ldapauth_sssd_services:
+  - nss
+  - pam
+  - ifp
+  - sudo
+  - ssh
